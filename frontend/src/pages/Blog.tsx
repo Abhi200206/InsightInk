@@ -38,10 +38,44 @@ const Blog = () => {
                 setLoading(false);
             })
     }, []);
+    const deletePost=async()=>{
+        try{
+            let ans=confirm("Are you sure , post will be permanently deleted ?");
+           if(ans)
+            {
+                setLoading(true);
+                let result=await axios.delete(` https://backend.vikkymsd777.workers.dev/api/v1/blog/delete/${id}`,{
+                    headers:{
+                        "Authorization":localStorage.getItem("token")
+                    }
+                });
+                if(result.data.result)
+                    {
+                        alert("deleted sucessfully");
+                        setLoading(false);
+                        navigate(`/home?email=${email}`);
+                    }
+                    else{
+                        alert("error while deleting post");
+                        setLoading(false);
+                    }
+                    
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+            alert("error while deleting post");
+            setLoading(false);
+        }
+    }
     return (
         <div >
             <div className="flex justify-between px-6 py-2 sticky top-0 z-1 bg-slate-100">
-               {(post.author==email) ?<div onClick={()=>navigate(`/edit?id=${id}&&email=${email}`)} className="text-white rounded cursor-pointer text-center bg-red-500 px-4"><p>Edit</p></div>:null}
+            {(post.author==email) ?<div className="flex gap-4">
+                <div onClick={()=>navigate(`/edit?id=${id}&&email=${email}`)} className="text-white rounded cursor-pointer text-center bg-red-500 px-4"><p>Edit</p></div>
+                <div onClick={deletePost} className="text-white rounded cursor-pointer text-center bg-red-500 px-4"><p>Delete </p></div>
+            </div>:null}
                 <div onClick={()=>navigate(`/home?email=${email}`)} className="text-white text-center bg-black rounded cursor-pointer px-4"><p>Back</p></div>
             </div>
             <div className="mx-6 my-2 border-[1px] p-2 ">

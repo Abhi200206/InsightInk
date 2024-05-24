@@ -65,6 +65,26 @@ blogrouter.post('/add', async (c) => {
         return c.json({ err });
     }
 });
+blogrouter.delete('/delete/:id', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env?.DATABASE_URL,
+    }).$extends(withAccelerate());
+    try {
+        let userid = c.get('userId');
+        let id = c.req.param("id");
+        let result = await prisma.posts.delete({
+            where: {
+                id,
+                userid
+            }
+        });
+        return c.json({ result });
+    }
+    catch (err) {
+        console.log(err);
+        return c.json({ err });
+    }
+});
 blogrouter.put('/put/:id', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env?.DATABASE_URL,
