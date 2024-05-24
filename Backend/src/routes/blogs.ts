@@ -93,7 +93,8 @@ blogrouter.put('/put/:id', async (c) => {
 		let {title,post}:Posttype=await c.req.json();
 		let result=await prisma.posts.update({
 			where:{
-				id:id
+				id:id,
+				userid
 			},
 			data:{
 				title,

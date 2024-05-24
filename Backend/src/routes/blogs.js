@@ -28,8 +28,7 @@ blogrouter.get('/:id', async (c) => {
         let userid = c.get('userId');
         let result = await prisma.posts.findUnique({
             where: {
-                id,
-                userid
+                id
             },
         });
         return c.json({ result });
@@ -76,7 +75,8 @@ blogrouter.put('/put/:id', async (c) => {
         let { title, post } = await c.req.json();
         let result = await prisma.posts.update({
             where: {
-                id: id
+                id: id,
+                userid
             },
             data: {
                 title,

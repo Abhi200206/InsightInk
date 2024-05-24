@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 interface Post {
     title?: string,
     post?: string,
-    author?:string
+    author?:any
 }
 const Blog = () => {
     const navigate=useNavigate();
@@ -15,7 +15,8 @@ const Blog = () => {
     const email=params.get('email');
     const [post, setPost] = useState<Post>({
         title: "",
-        post: ""
+        post: "",
+        author:""
     });
     const id = params.get('id');
     useEffect(()=>{
@@ -40,7 +41,7 @@ const Blog = () => {
     return (
         <div >
             <div className="flex justify-between px-6 py-2 sticky top-0 z-1 bg-slate-100">
-                <div onClick={()=>navigate(`/edit?id=${id}&&email=${email}`)} className="text-white rounded cursor-pointer text-center bg-red-500 px-4"><p>Edit</p></div>
+               {(post.author==email) ?<div onClick={()=>navigate(`/edit?id=${id}&&email=${email}`)} className="text-white rounded cursor-pointer text-center bg-red-500 px-4"><p>Edit</p></div>:null}
                 <div onClick={()=>navigate(`/home?email=${email}`)} className="text-white text-center bg-black rounded cursor-pointer px-4"><p>Back</p></div>
             </div>
             <div className="mx-6 my-2 border-[1px] p-2 ">
