@@ -5,7 +5,8 @@ import check from "./function";
 import Loading from "../components/Loading";
 interface Post {
     title?: string,
-    post?: string
+    post?: string,
+    author?:string
 }
 const Blog = () => {
     const navigate=useNavigate();
@@ -38,7 +39,7 @@ const Blog = () => {
     }, []);
     return (
         <div >
-            <div className="flex justify-between px-6 py-2">
+            <div className="flex justify-between px-6 py-2 sticky top-0 z-1 bg-slate-100">
                 <div onClick={()=>navigate(`/edit?id=${id}&&email=${email}`)} className="text-white rounded cursor-pointer text-center bg-red-500 px-4"><p>Edit</p></div>
                 <div onClick={()=>navigate(`/home?email=${email}`)} className="text-white text-center bg-black rounded cursor-pointer px-4"><p>Back</p></div>
             </div>
@@ -46,6 +47,9 @@ const Blog = () => {
             {loading ? <Loading /> : <div>
                 <p className="font-bold text-[40px] my-4">{post.title}</p>
                 <p className="texgt-slate-500">{post.post}</p>
+                <div className="my-4">
+                    <p className="font-bold text-[20px] ">This Blog is written by: {post.author}</p>
+                </div>
             </div>}
             </div>
         </div>

@@ -56,7 +56,7 @@ userrouter.get("/all/bulk", async (c) => {
         const prisma = new PrismaClient({
             datasourceUrl: c.env?.DATABASE_URL,
         }).$extends(withAccelerate());
-        let result = prisma.posts.findMany({});
+        let result = await prisma.posts.findMany({});
         return c.json({ result });
     }
     catch (err) {

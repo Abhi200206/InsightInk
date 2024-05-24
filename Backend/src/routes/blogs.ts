@@ -10,7 +10,8 @@ export const blogrouter = new Hono<{
     jwt_sec: string
   },
   Variables : {
-		userId: string
+		userId: string,
+		useremail:string
 	}
 
 }>();
@@ -27,11 +28,10 @@ blogrouter.use('/*', async (c, next) => {
 		return c.json({ error: "unauthorized" });
 	}
 	c.set('userId', payload.id);
+	c.set('useremail',payload.email);
 	await next()
 });
-blogrouter.get('/me',(c)=>{
-	return c.json({bool:true});
-});
+
 blogrouter.get('/:id',async (c) => {
 	const prisma = new PrismaClient({
 		datasourceUrl: c.env?.DATABASE_URL,
@@ -41,8 +41,7 @@ blogrouter.get('/:id',async (c) => {
 		let userid=c.get('userId');
 		let result=await prisma.posts.findUnique({
 			where:{
-				id,
-				userid
+				id
 			},
 		});
 		return c.json({result});
@@ -61,12 +60,14 @@ blogrouter.post('/add',async (c) => {
 	  }).$extends(withAccelerate());
 	  try{
 		let userid=c.get('userId');
+		let email=c.get('useremail');
 		let {title,post}:Posttype=await c.req.json();
 		let result=await prisma.posts.create({
 			data:{
 				userid,
 				title,
-				post
+				post,
+				author:email
 			},
 			select:{
 				id:true,

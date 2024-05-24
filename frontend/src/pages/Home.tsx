@@ -53,12 +53,12 @@ const Home = () => {
                 <div>
                     <div className="flex justify-between mx-[10px] items-center ">
                         <div><p className="text-[30px] font-bold my-12">your posts:</p></div>
-                        <div onClick={()=>navigate(`/?email=${email}`)}><Icon/></div>
+                        <div onClick={()=>navigate(`/?email=${email}&&bool=${true}`)}><Icon/></div>
                         <div onClick={route} className="rounded text-white bg-green-500 px-6 text-center h-[30px] cursor-pointer"><p>Create</p></div>
                     </div>
                     <div className="mx-4 p-1">
-                        {posts.length>0?posts.map((m: { title: string, post: string, id: string }) => {
-                            return <Postcard key={m.id} title={m.title} post={m.post} id={m.id} email={email} />
+                        {posts.length>0?posts.map((m: { title: string, post: string, id: string, author:string }) => {
+                            return <Postcard key={m.id} title={m.title} post={m.post} id={m.id} email={email} author={m.author}/>
                         }):<div className="text-slate-200 text-[40px] flex justify-center">
                             <p>Nothing to show. Create one</p>
                             </div>}</div>

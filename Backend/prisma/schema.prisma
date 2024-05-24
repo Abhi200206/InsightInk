@@ -25,7 +25,8 @@ model Posts {
   id        String  @id @default(uuid())
   userid    String
   title     String
-  published Boolean @default(false)
+  author    String
+  published Boolean @default(true)
   post      String
   user      User    @relation(fields: [userid], references: [id])
 }

@@ -16,10 +16,8 @@ blogrouter.use('/*', async (c, next) => {
         return c.json({ error: "unauthorized" });
     }
     c.set('userId', payload.id);
+    c.set('useremail', payload.email);
     await next();
-});
-blogrouter.get('/me', (c) => {
-    return c.json({ bool: true });
 });
 blogrouter.get('/:id', async (c) => {
     const prisma = new PrismaClient({
@@ -47,12 +45,14 @@ blogrouter.post('/add', async (c) => {
     }).$extends(withAccelerate());
     try {
         let userid = c.get('userId');
+        let email = c.get('useremail');
         let { title, post } = await c.req.json();
         let result = await prisma.posts.create({
             data: {
                 userid,
                 title,
-                post
+                post,
+                author: email
             },
             select: {
                 id: true,
