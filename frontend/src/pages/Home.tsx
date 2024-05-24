@@ -4,6 +4,7 @@ import axios from "axios";
 import Loading from "../components/Loading";
 import Postcard from "../components/Postcard";
 import check from "./function";
+import Icon from "./Icon";
 const Home = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(true);
@@ -52,6 +53,7 @@ const Home = () => {
                 <div>
                     <div className="flex justify-between mx-[10px] items-center ">
                         <div><p className="text-[30px] font-bold my-12">your posts:</p></div>
+                        <div onClick={()=>navigate(`/?email=${email}`)}><Icon/></div>
                         <div onClick={route} className="rounded text-white bg-green-500 px-6 text-center h-[30px] cursor-pointer"><p>Create</p></div>
                     </div>
                     <div className="mx-4 p-1">

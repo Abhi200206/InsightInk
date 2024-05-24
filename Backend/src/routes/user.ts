@@ -65,6 +65,20 @@ userrouter.post('/signin', async (c) => {
       return c.json({ result: "error while logging in" });
     }
   });
+  userrouter.get("/all/bulk",async(c)=>{
+    try{
+      const prisma = new PrismaClient({
+        datasourceUrl: c.env?.DATABASE_URL,
+      }).$extends(withAccelerate());
+      let result=await prisma.posts.findMany({});
+      return c.json({result});
+    }
+    catch(err)
+    {
+      console.log(err);
+      return c.json({error:err});
+    }
+  });
   userrouter.post('/signup', async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env?.DATABASE_URL,
