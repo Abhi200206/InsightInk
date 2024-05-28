@@ -63,7 +63,7 @@ const Signin = () => {
                         </div>
                     </div>
                 </div>
-                <div className="md:col-span-3 flex justify-center items-center bg-purple-400">
+                <div className=" md:col-span-3 flex justify-center items-center bg-purple-400">
                     <Apppage />
                 </div>
 
