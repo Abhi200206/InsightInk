@@ -81,7 +81,7 @@ const Blog = () => {
             <div className="mx-6 my-2 border-[1px] p-2 ">
             {loading ? <Loading /> : <div>
                 <p className="font-bold text-[40px] my-4">{post.title}</p>
-                <p className="texgt-slate-500">{post.post}</p>
+                <p className="texgt-slate-500 whitespace-pre-wrap">{post.post}</p>
                 <div className="my-4">
                     <p className="font-bold text-[20px] ">This Blog is written by: {post.author}</p>
                 </div>
