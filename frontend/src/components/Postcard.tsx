@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 const Postcard=({title,post,id,email,author}:{title:string,post:string,id:string,email:string,author:string})=>{
     const navigate=useNavigate();
     let newpost=post.slice(0,500)+" ...";
+    let readTime=Math.ceil(post.length/1500);
     const reroute=()=>{
         navigate(`/blog?id=${id}&&email=${email}`);
     }
@@ -13,7 +14,16 @@ const Postcard=({title,post,id,email,author}:{title:string,post:string,id:string
             <div className="text-[15px] text-slate-600 font-bold "><p>@{author} </p></div>
            </div>
            <p className="text-slate-500">{newpost}</p>
+           <div className="flex gap-1 ml-2">
+           <div className="flex flex-col justify-center"> <Circle/></div>
+           <p className=" text-[12px] text-slate-600 my-4 ">{readTime} min read</p>
+           </div>
         </div>
     )
+}
+const Circle=()=>{
+    return <div className="rounded-full h-1 w-1 bg-slate-500">
+
+    </div>
 }
 export default Postcard
