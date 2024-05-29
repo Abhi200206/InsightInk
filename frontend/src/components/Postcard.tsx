@@ -2,11 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const Postcard=({title,post,id,email,author}:{title:string,post:string,id:string,email:string,author:string})=>{
     const navigate=useNavigate();
-    let arr=post.split(" ");
-    let finalpost=arr.splice(0,15);
-    finalpost.push(" .....");
-    arr=[];
-    let newpost=finalpost.join(" ");
+    let newpost=post.slice(0,500)+" ...";
     const reroute=()=>{
         navigate(`/blog?id=${id}&&email=${email}`);
     }
