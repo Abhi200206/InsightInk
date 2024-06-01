@@ -72,7 +72,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [React.js](https://reactjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Cloudflare Workers](https://workers.cloudflare.com/)
-- [Heno.js](https://github.com/luangjokaj/heno)
+- [Heno.js](https://hono.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Prisma ORM](https://www.prisma.io/)
