@@ -16,8 +16,9 @@ const Home = () => {
     }
     useEffect(() => {
         check().then(async (result) => {
+            setEmail(result.email);
             if (!result.bool) {
-                setEmail(result.email);
+                
                 navigate('/signin');
             }
         })
