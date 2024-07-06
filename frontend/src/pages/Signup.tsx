@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Apppage from "../components/Apppage";
 import axios from "axios";
@@ -6,18 +6,17 @@ import check from "./function";
 import Loading from "../components/Loading";
 const Signup = () => {
     const navigate = useNavigate();
-    const [loading,setLoading]=useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [email, setEmail] = useState<string>("");
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    useEffect(()=>{
-        check().then(async(result)=>{
-            if(result.bool)
-                {
-                    navigate(`/home?email=${result.email}`)
-                }
+    useEffect(() => {
+        check().then(async (result) => {
+            if (result.bool) {
+                navigate(`/home`);
+            }
         })
-    },[]);
+    }, []);
     const submit = async () => {
         try {
             setLoading(true);
@@ -65,7 +64,7 @@ const Signup = () => {
                         }} className="w-full p-1 border-[1px] border-black rounded " type="text" placeholder="enter your name" />
                         <br />
                         <div className="my-4">
-                            <div onClick={submit} className="rounded bg-black text-white text-center p-1 cursor-pointer my-2 hover:bg-slate-500">{loading?<Loading/>:<p>signup</p>}</div>
+                            <div onClick={submit} className="rounded bg-black text-white text-center p-1 cursor-pointer my-2 hover:bg-slate-500">{loading ? <Loading /> : <p>signup</p>}</div>
                             <div className="flex gap-1"><p className="text-slate-700">Already have an account?</p> <p onClick={() => navigate('/signin')} className="underline cursor-pointer">Login</p></div>
                         </div>
                     </div>

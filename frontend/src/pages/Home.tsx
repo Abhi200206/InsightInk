@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../components/Loading";
 import Postcard from "../components/Postcard";
@@ -9,8 +9,7 @@ const Home = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(true);
     let [posts, setPosts] = useState([]);
-    const [params] = useSearchParams();
-    const email: any = params.get("email");
+    let email = "";
     const logout = () => {
         localStorage.removeItem("token");
         navigate('/signin');
@@ -18,6 +17,7 @@ const Home = () => {
     useEffect(() => {
         check().then(async (result) => {
             if (!result.bool) {
+                email = result.email;
                 navigate('/signin');
             }
         })
@@ -41,7 +41,7 @@ const Home = () => {
         }
     }, []);
     const route = () => {
-        navigate(`/create?email=${email}`);
+        navigate(`/create`);
     }
     return (
         <div>
@@ -53,15 +53,15 @@ const Home = () => {
                 <div>
                     <div className="flex justify-between mx-[10px] items-center ">
                         <div><p className="text-[30px] font-bold my-12">your posts:</p></div>
-                        <div onClick={()=>navigate(`/?email=${email}&&bool=${true}`)}><Icon/></div>
+                        <div onClick={() => navigate(`/?bool=${true}`)}><Icon /></div>
                         <div onClick={route} className="rounded text-white bg-green-500 px-6 text-center h-[30px] cursor-pointer"><p>Create</p></div>
                     </div>
                     <div className="mx-4 p-1">
-                        {posts.length>0?posts.map((m: { title: string, post: string, id: string, author:string }) => {
-                            return <Postcard key={m.id} title={m.title} post={m.post} id={m.id} email={email} author={m.author}/>
-                        }):<div className="text-slate-200 text-[40px] flex justify-center">
+                        {posts.length > 0 ? posts.map((m: { title: string, post: string, id: string, author: string }) => {
+                            return <Postcard key={m.id} title={m.title} post={m.post} id={m.id} email={email} author={m.author} />
+                        }) : <div className="text-slate-200 text-[40px] flex justify-center">
                             <p>Nothing to show. Create one</p>
-                            </div>}</div>
+                        </div>}</div>
                 </div>
             </div>}
         </div>

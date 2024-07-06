@@ -6,17 +6,16 @@ import Loading from "../components/Loading";
 import check from "./function";
 const Signin = () => {
     const navigate = useNavigate();
-    const [loading,setLoading]=useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    useEffect(()=>{
-        check().then(async(result)=>{
-            if(result.bool)
-                {
-                    navigate(`/home?email=${result.email}`)
-                }
+    useEffect(() => {
+        check().then(async (result) => {
+            if (result.bool) {
+                navigate(`/home`);
+            }
         })
-    },[]);
+    }, []);
     const submit = async () => {
         try {
             setLoading(true);
@@ -29,7 +28,7 @@ const Signin = () => {
                 setLoading(false);
                 alert("Login successfull");
                 localStorage.setItem('token', `Bearer ${result.data.token}`);
-                navigate(`/home?email=${result.data.result.email}`);
+                navigate(`/home`);
             }
             else {
                 setLoading(false);
@@ -58,7 +57,7 @@ const Signin = () => {
                         }} className="w-full p-1 border-[1px] border-black rounded " type="password" placeholder="enter password" />
                         <br />
                         <div className="my-4">
-                            <div onClick={submit} className="rounded bg-black text-white text-center p-1 cursor-pointer my-2 hover:bg-slate-500">{loading?<Loading/>:<p>signin</p>}</div>
+                            <div onClick={submit} className="rounded bg-black text-white text-center p-1 cursor-pointer my-2 hover:bg-slate-500">{loading ? <Loading /> : <p>signin</p>}</div>
                             <div className="flex gap-1"><p className="text-slate-700">Don't have an account?</p> <p onClick={() => navigate('/signup')} className="underline cursor-pointer">Signup</p></div>
                         </div>
                     </div>

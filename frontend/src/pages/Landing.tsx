@@ -10,19 +10,19 @@ const Landing = () => {
     const [posts, setPosts] = useState([]);
     const [params] = useSearchParams();
     const bool = params.get("bool");
-    const nemail:any= params.get("email");
+    let nemail = "";
     const [loading, setLading] = useState<boolean>(true);
     const navigate = useNavigate();
     useEffect(() => {
-        if(!bool)
-            {
-                check().then(async (result) => {
-                    if (result.bool) {
-                        navigate(`/home?email=${result.email}`);
-                        setLading(false);
-                    }
-                })
-            }
+        if (!bool) {
+            check().then(async (result) => {
+                nemail = result.email;
+                if (result.bool) {
+                    navigate(`/home`);
+                    setLading(false);
+                }
+            })
+        }
     }, []);
     useEffect(() => {
         try {
@@ -40,7 +40,7 @@ const Landing = () => {
         <div>
             <div className="sticky top-0 bg-gradient-to-r from-purple-200 to-green-500 py-2 px-4 flex justify-between ">
                 <div className="font-bold  text-[20px] from-purple-200 to-green-500 "><p>InsightInk</p></div>
-                {bool ? <div onClick={() => navigate(`/home?email=${nemail}`)} className="rounded cursor-pointer bg-black text-white px-4"><p>Back</p></div> : <div className="flex gap-4">
+                {bool ? <div onClick={() => navigate(`/home`)} className="rounded cursor-pointer bg-black text-white px-4"><p>Back</p></div> : <div className="flex gap-4">
                     <div onClick={() => navigate(`/signup`)} className="rounded bg-white text-black border-[1px] cursor-pointer px-2"><p>Signup</p></div>
                     <div onClick={() => navigate(`/signin`)} className="rounded bg-white text-black border-[1px] cursor-pointer px-2"><p>Login</p></div>
                 </div>}

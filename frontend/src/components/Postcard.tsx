@@ -5,7 +5,7 @@ const Postcard=({title,post,id,email,author}:{title:string,post:string,id:string
     let newpost=post.slice(0,500)+" ...";
     let readTime=Math.ceil(post.length/1500);
     const reroute=()=>{
-        navigate(`/blog?id=${id}&&email=${email}`);
+        navigate(`/blog?id=${id}`);
     }
     return (
         <div onClick={reroute} className="cursor-pointer rounded border-[1px] p-1 my-4">
