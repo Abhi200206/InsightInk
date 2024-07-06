@@ -10,13 +10,11 @@ const Landing = () => {
     const [posts, setPosts] = useState([]);
     const [params] = useSearchParams();
     const bool = params.get("bool");
-    let nemail = "";
     const [loading, setLading] = useState<boolean>(true);
     const navigate = useNavigate();
     useEffect(() => {
         if (!bool) {
             check().then(async (result) => {
-                nemail = result.email;
                 if (result.bool) {
                     navigate(`/home`);
                     setLading(false);
@@ -50,7 +48,7 @@ const Landing = () => {
             </div>
             {loading ? <Loading /> : <div className="mx-4 p-1">
                 {posts.length > 0 ? posts.map((m: { title: string, post: string, id: string, author: string }) => {
-                    return <Postcard key={m.id} title={m.title} post={m.post} id={m.id} email={nemail} author={m.author} />
+                    return <Postcard key={m.id} title={m.title} post={m.post} id={m.id}  author={m.author} />
                 }) : <div className="text-slate-200 text-[40px] flex justify-center">
                     <p>Nothing to show. Create one</p>
                 </div>}</div>}

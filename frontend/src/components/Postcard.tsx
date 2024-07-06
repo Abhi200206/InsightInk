@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Postcard=({title,post,id,email,author}:{title:string,post:string,id:string,email:string,author:string})=>{
+const Postcard=({title,post,id,author}:{title:string,post:string,id:string,author:string})=>{
     const navigate=useNavigate();
     let newpost=post.slice(0,500)+" ...";
     let readTime=Math.ceil(post.length/1500);
