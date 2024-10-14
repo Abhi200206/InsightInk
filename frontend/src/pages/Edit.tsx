@@ -45,8 +45,9 @@ const Edit = () => {
             navigate(`/home`);
         }
         else {
-            alert("error while saving changes, plaese try again!");
+            alert("error while saving changes, plaese try again later!");
             setLoading(false);
+            navigate(`/home`);
         }
     }
     return (
