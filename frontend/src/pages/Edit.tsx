@@ -56,11 +56,11 @@ const Edit = () => {
                     <div>
                         <div className="flex gap-2 ml-2">
                             <p className="font-bold">Title:</p>
-                            <input value={title} onChange={(e) => setTitle(e.target.value)} className="border-[1px] w-[500px] border-black px-1 rounded" type="text" placeholder="enter the title" />
+                            <input value={title} onChange={(e) => setTitle(e.target.value)} className="border-[1px] w-full md:w-[500px] border-black px-1 rounded"  type="text" placeholder="enter the title" />
                             <div onClick={() => navigate(`/home`)} className="text-white bg-black rounded cursor-pointer px-2"><p>Back</p></div>
                         </div>
                         <div className="my-2 w-full">
-                            <textarea placeholder="Start Typing ...." className="border-[1px] text-slate-500 border-black w-[800px] h-[400px]  mx-4 rounded px-1 " value={post} onChange={(e) => setPost(e.target.value)} />
+                            <textarea placeholder="Start Typing ...." className="border-[1px] text-slate-500 border-black w-full font-serif  md:w-[800px] h-[400px]  mx-4 rounded px-1 " value={post} onChange={(e) => setPost(e.target.value)} />
                         </div>
                         <div>
                             <div onClick={save} className="rounded mx-3 text-white bg-green-500 px-6 text-center h-[30px] cursor-pointer"><p>save changes</p></div>

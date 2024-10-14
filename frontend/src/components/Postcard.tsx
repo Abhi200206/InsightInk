@@ -9,7 +9,7 @@ const Postcard=({title,post,id,author}:{title:string,post:string,id:string,autho
     }
     return (
         <div onClick={reroute} className="cursor-pointer rounded border-[1px] p-1 my-4">
-           <div className="flex justify-between mx-1">
+           <div className="flex justify-between mx-1 text-ellipsis overflow-hidden ...">
             <div><p className=" font-black text-[20px] my-2 ">{title}</p></div>
             <div className="text-[15px] text-slate-600 font-bold "><p>@{author} </p></div>
            </div>

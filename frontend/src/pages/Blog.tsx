@@ -12,7 +12,7 @@ const Blog = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(true);
     const [params] = useSearchParams();
-    const [email,setEmail]=useState<string>("");
+    const [email, setEmail] = useState<string>("");
     const [post, setPost] = useState<Post>({
         title: "",
         post: "",
@@ -62,8 +62,9 @@ const Blog = () => {
         }
         catch (err) {
             console.log(err);
-            alert("error while deleting post");
+            alert("error while deleting post navigating to home");
             setLoading(false);
+            navigate(`/home`);
         }
     }
     return (
@@ -77,10 +78,10 @@ const Blog = () => {
             </div>
             <div className="mx-6 my-2 border-[1px] p-2 ">
                 {loading ? <Loading /> : <div>
-                    <p className="font-bold text-[40px] my-4">{post.title}</p>
-                    <p className="texgt-slate-500 whitespace-pre-wrap">{post.post}</p>
+                    <div className="bg-gradient-to-r from-purple-200 to-green-500 font-serif py-28 text-center overflow-x-auto"><p className="font-bold text-[40px] ml-4 ">{post.title}</p></div>
+                    <p className="texgt-slate-500 text-base  whitespace-pre-wrap font-serif mt-4">{post.post}</p>
                     <div className="my-4">
-                        <p className="font-bold text-[20px] ">This Blog is written by: {post.author}</p>
+                        <p className="font-bold  text-[25px] font-serif">This Blog is written by: {post.author}</p>
                     </div>
                 </div>}
             </div>

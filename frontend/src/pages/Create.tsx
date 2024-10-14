@@ -51,7 +51,7 @@ const Create = () => {
                         <div onClick={() => navigate(`/home`)} className="text-white bg-black rounded cursor-pointer px-2"><p>Back</p></div>
                     </div>
                     <div className="my-2 w-full">
-                        <textarea placeholder="Start Typing ...." className="border-[1px] text-slate-500 border-black w-full  md:w-[800px] h-[400px]  mx-4 rounded px-1 " value={post} onChange={(e) => setPost(e.target.value)} />
+                        <textarea placeholder="Start Typing ...." className="border-[1px] text-slate-500 border-black w-full font-serif  md:w-[800px] h-[400px]  mx-4 rounded px-1 " value={post} onChange={(e) => setPost(e.target.value)} />
                     </div>
                     <div>
                         <div onClick={submit} className="rounded mx-3 text-white bg-green-500 px-6 text-center w-full h-[30px] cursor-pointer"><p>Create</p></div>
