@@ -10,7 +10,7 @@ interface Post {
 }
 const Blog = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
     const [params] = useSearchParams();
     const [email, setEmail] = useState<string>("");
     const [post, setPost] = useState<Post>({
@@ -28,6 +28,7 @@ const Blog = () => {
         })
     }, []);
     useEffect(() => {
+        setLoading(true);
         axios.get(`https://backend.vikkymsd777.workers.dev/api/v1/blog/${id}`, {
             headers: {
                 "Authorization": localStorage.getItem("token")
@@ -67,6 +68,12 @@ const Blog = () => {
             navigate(`/home`);
         }
     }
+    if(loading)
+    {
+        return (
+            <Loading/>
+        )
+    }
     return (
         <div >
             <div className="flex justify-between px-6 py-2 sticky top-0 z-1 bg-slate-100">
@@ -77,13 +84,13 @@ const Blog = () => {
                 <div onClick={() => navigate(`/home`)} className="text-white text-center bg-black rounded cursor-pointer px-4"><p>Back</p></div>
             </div>
             <div className="mx-6 my-2 border-[1px] p-2 ">
-                {loading ? <Loading /> : <div>
+                 <div>
                     <div className="bg-gradient-to-r from-purple-200 to-green-500 font-serif py-28 text-center overflow-x-auto"><p className="font-bold text-[40px] ml-4 ">{post.title}</p></div>
                     <p className="texgt-slate-500 text-base  whitespace-pre-wrap font-serif mt-4">{post.post}</p>
                     <div className="my-4">
                         <p className="font-bold  text-[25px] font-serif">This Blog is written by: {post.author}</p>
                     </div>
-                </div>}
+                </div>
             </div>
         </div>
     )
