@@ -1,5 +1,5 @@
 # InsightInk
-
+ 
 InsightInk is a blog platform where users can sign up, write blogs to share their interests with the world, and edit or delete their blogs at their convenience. Built with a modern tech stack, InsightInk provides a seamless and secure blogging experience.
 
 ## Features
