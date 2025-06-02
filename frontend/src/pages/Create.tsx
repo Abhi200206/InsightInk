@@ -16,6 +16,10 @@ const Create = () => {
         })
     }, []);
     const submit = async () => {
+        if (!title.trim() || !post.trim()) {
+            alert("Title and content cannot be empty");
+            return;
+        }
         try {
             setLoading(true);
             let result = await axios.post("https://backend.vikkymsd777.workers.dev/api/v1/blog/add", {
